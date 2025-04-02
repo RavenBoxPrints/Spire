@@ -1,8 +1,7 @@
 #include "Game.h"
-#include <iostream>
 
 Game::Game() :
-	m_window{ sf::VideoMode{ 480U, 270U, 32U }, "SFML Game" },
+	m_window{ sf::VideoMode{ 960U, 480U, 32U }, "SFML Game" },
 	m_exitGame{false}
 {
 	/// Creating a viewport that scales images to the window size
@@ -79,7 +78,36 @@ void Game::update(sf::Time t_deltaTime)
 
 void Game::render()
 {
-	m_window.clear(sf::Color::White);
+	m_renderTarget.clear(sf::Color::White);
 	
+	renderCitadel();
+
+	m_renderTarget.display();
+	m_window.draw(m_renderTargetSprite);
 	m_window.display();
+}
+
+void Game::renderCitadel()
+{
+	if (m_gameMode == PLAY && m_timeOfDay == SUNRISE)
+	{
+		m_renderTarget.draw(m_Citadel.getSunrise());
+		m_renderTarget.draw(m_Citadel.getCloud1());
+		m_renderTarget.draw(m_Citadel.getCloud2());
+		m_renderTarget.draw(m_Citadel.getCloud3());
+		m_renderTarget.draw(m_Citadel.getCitadel());
+		m_renderTarget.draw(m_Citadel.getRay1());
+		m_renderTarget.draw(m_Citadel.getRay2());
+	}
+	if (m_gameMode == PLAY && m_timeOfDay == SUNSET)
+	{
+		m_renderTarget.draw(m_Citadel.getSunset());
+		m_renderTarget.draw(m_Citadel.getCandle());
+		m_renderTarget.draw(m_Citadel.getCloud1());
+		m_renderTarget.draw(m_Citadel.getCloud2());
+		m_renderTarget.draw(m_Citadel.getCloud3());
+		m_renderTarget.draw(m_Citadel.getCitadel());
+		m_renderTarget.draw(m_Citadel.getRay1());
+		m_renderTarget.draw(m_Citadel.getRay2());
+	}
 }
