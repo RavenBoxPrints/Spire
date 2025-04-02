@@ -75,7 +75,10 @@ void Game::update(sf::Time t_deltaTime)
 		m_window.close();
 	}
 
-	m_Citadel.animateCitadel();
+	if (m_gameMode == PLAY)
+	{
+		m_Citadel.animateCitadel(m_timeOfDay);
+	}
 }
 
 void Game::render()

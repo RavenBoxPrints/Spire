@@ -27,8 +27,8 @@ private:
 
 	Citadel m_Citadel;
 
-	int m_level = CITADEL;
 	int m_gameMode = PLAY;
+	int m_level = CITADEL;
 	int m_timeOfDay = SUNRISE;
 
 public:
