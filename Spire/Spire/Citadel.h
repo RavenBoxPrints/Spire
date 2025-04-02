@@ -29,12 +29,19 @@ private:
 	
 	sf::Texture m_ray1Image;
 	sf::Sprite m_ray1Sprite;
+	float m_ray1Opacity = 100.0f;
+	bool ray1Fading = true;
 
 	sf::Texture m_ray2Image;
 	sf::Sprite m_ray2Sprite;
+	float m_ray2Opacity = 20.0f;
+	bool ray2Fading = true;
+
+	float m_fadeSpeed = 0.1f; // The speed at which the sunrays flicker
 
 	sf::Texture m_candleSheet;
 	sf::Sprite m_candleSprite;
+
 
 public:
 
@@ -42,6 +49,9 @@ public:
 
 	void loadCitadelDetail();
 	void setupCitadel();
+
+	void animateCitadel();
+	void animateSunrays();
 
 	sf::Sprite getSunrise();
 	sf::Sprite getSunset();

@@ -55,8 +55,64 @@ void Citadel::setupCitadel()
 	m_cloud3Sprite.setTexture(m_cloud3Image);
 	m_candleSprite.setTexture(m_candleSheet);
 	m_citSprite.setTexture(m_citImage);
+
 	m_ray1Sprite.setTexture(m_ray1Image);
+	m_ray1Sprite.setColor(sf::Color(255.0f, 255.0f, 255.0f, m_ray1Opacity));
+
 	m_ray2Sprite.setTexture(m_ray2Image);
+	m_ray2Sprite.setColor(sf::Color(255.0f, 255.0f, 255.0f, m_ray2Opacity));
+}
+
+void Citadel::animateCitadel()
+{
+	animateSunrays();
+}
+
+void Citadel::animateSunrays()
+{
+	if (ray1Fading == true)
+	{
+		m_ray1Opacity -= m_fadeSpeed;
+		m_ray1Sprite.setColor(sf::Color(255.0f, 255.0f, 255.0f, m_ray1Opacity));
+
+		if (m_ray1Opacity == 0.0f);
+		{
+			ray1Fading = false;
+		}
+	}
+
+	if (ray1Fading == false)
+	{
+		m_ray1Opacity += m_fadeSpeed;
+		m_ray1Sprite.setColor(sf::Color(255.0f, 255.0f, 255.0f, m_ray1Opacity));
+
+		if (m_ray1Opacity == 100.0f)
+		{
+			ray1Fading = true;
+		}
+	}
+
+	if (ray2Fading == true)
+	{
+		m_ray2Opacity -= m_fadeSpeed;
+		m_ray2Sprite.setColor(sf::Color(255.0f, 255.0f, 255.0f, m_ray2Opacity));
+
+		if (m_ray2Opacity == 0.0f);
+		{
+			ray2Fading = false;
+		}
+	}
+
+	if (ray2Fading == false)
+	{
+		m_ray2Opacity += m_fadeSpeed;
+		m_ray2Sprite.setColor(sf::Color(255.0f, 255.0f, 255.0f, m_ray2Opacity));
+
+		if (m_ray2Opacity == 100.0f)
+		{
+			ray2Fading = true;
+		}
+	}
 }
 
 sf::Sprite Citadel::getSunrise()
