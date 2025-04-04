@@ -129,7 +129,6 @@ void Game::renderCitadel()
 	if (m_gameMode == PLAY && m_timeOfDay == SUNSET)
 	{
 		m_renderTarget.draw(m_Citadel.getSunset());
-		m_renderTarget.draw(m_Citadel.getCandle());
 		m_renderTarget.draw(m_Citadel.getCloud1());
 		m_renderTarget.draw(m_Citadel.getCloud2());
 		m_renderTarget.draw(m_Citadel.getCloud3());
@@ -137,5 +136,13 @@ void Game::renderCitadel()
 		m_renderTarget.draw(m_Citadel.getCitadel());
 		m_renderTarget.draw(m_Citadel.getRay1());
 		m_renderTarget.draw(m_Citadel.getRay2());
+	}
+
+	if (m_gameMode == PLAY && m_timeOfDay == NIGHT)
+	{
+		m_renderTarget.draw(m_Citadel.getNight());
+		m_renderTarget.draw(m_Citadel.getStars());
+		m_renderTarget.draw(m_Citadel.getCandle());
+		m_renderTarget.draw(m_Citadel.getCitadel());
 	}
 }

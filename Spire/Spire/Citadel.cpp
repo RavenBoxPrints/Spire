@@ -16,6 +16,10 @@ void Citadel::loadCitadelDetail()
 	{
 		std::cout << "Failed to load sunset image" << std::endl;
 	}
+	if (!m_nightImage.loadFromFile("ASSETS//IMAGES//night.png"))
+	{
+		std::cout << "Failed to load night image" << std::endl;
+	}
 	if (!m_cloud1Image.loadFromFile("ASSETS//IMAGES//cloud1.png"))
 	{
 		std::cout << "Failed to load cloud1 image" << std::endl;
@@ -27,6 +31,10 @@ void Citadel::loadCitadelDetail()
 	if (!m_cloud3Image.loadFromFile("ASSETS//IMAGES//cloud3.png"))
 	{
 		std::cout << "Failed to load cloud3 image" << std::endl;
+	}
+	if (!m_starSheet.loadFromFile("ASSETS//IMAGES//stars.png"))
+	{
+		std::cout << "Failed to load star sheet" << std::endl;
 	}
 	if (!m_candleSheet.loadFromFile("ASSETS//IMAGES//candles.png"))
 	{
@@ -50,6 +58,7 @@ void Citadel::setupCitadel()
 {
 	m_sunriseSprite.setTexture(m_sunriseImage);
 	m_sunsetSprite.setTexture(m_sunsetImage);
+	m_nightSprite.setTexture(m_nightImage);
 
 	m_cloud1Sprite.setTexture(m_cloud1Image);
 	m_cloud2Sprite.setTexture(m_cloud2Image);
@@ -57,7 +66,10 @@ void Citadel::setupCitadel()
 	m_reverseCloud3.setTexture(m_cloud3Image);
 	m_reverseCloud3.setPosition(SCREEN_WIDTH, 0);
 
+	m_starSprite.setTexture(m_starSheet);
+	m_starSprite.setTextureRect(sf::IntRect(0, 0, SCREEN_WIDTH, SCREEN_HEIGHT));
 	m_candleSprite.setTexture(m_candleSheet);
+	m_candleSprite.setTextureRect(sf::IntRect(0, 0, SCREEN_WIDTH, 64));
 	m_citSprite.setTexture(m_citImage);
 
 	m_ray1Sprite.setTexture(m_ray1Image);
@@ -152,6 +164,11 @@ sf::Sprite Citadel::getSunset()
 	return m_sunsetSprite;
 }
 
+sf::Sprite Citadel::getNight()
+{
+	return m_nightSprite;
+}
+
 sf::Sprite Citadel::getCloud1()
 {
 	return m_cloud1Sprite;
@@ -175,6 +192,11 @@ sf::Sprite Citadel::getCloud3Add()
 sf::Sprite Citadel::getCandle()
 {
 	return m_candleSprite;
+}
+
+sf::Sprite Citadel::getStars()
+{
+	return m_starSprite;
 }
 
 sf::Sprite Citadel::getCitadel()

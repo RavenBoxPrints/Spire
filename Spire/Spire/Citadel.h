@@ -18,6 +18,9 @@ private:
 	sf::Texture m_sunsetImage;
 	sf::Sprite m_sunsetSprite;
 
+	sf::Texture m_nightImage;
+	sf::Sprite m_nightSprite;
+
 	sf::Texture m_cloud1Image;
 	sf::Sprite m_cloud1Sprite;
 
@@ -44,6 +47,9 @@ private:
 	sf::Texture m_candleSheet;
 	sf::Sprite m_candleSprite;
 
+	sf::Texture m_starSheet;
+	sf::Sprite m_starSprite;
+
 
 public:
 
@@ -58,11 +64,13 @@ public:
 
 	sf::Sprite getSunrise();
 	sf::Sprite getSunset();
+	sf::Sprite getNight();
 	sf::Sprite getCloud1();
 	sf::Sprite getCloud2();
 	sf::Sprite getCloud3();
 	sf::Sprite getCloud3Add();
 	sf::Sprite getCandle();
+	sf::Sprite getStars();
 	sf::Sprite getCitadel();
 	sf::Sprite getRay1();
 	sf::Sprite getRay2();
