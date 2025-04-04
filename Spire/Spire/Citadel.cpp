@@ -54,6 +54,8 @@ void Citadel::setupCitadel()
 	m_cloud1Sprite.setTexture(m_cloud1Image);
 	m_cloud2Sprite.setTexture(m_cloud2Image);
 	m_cloud3Sprite.setTexture(m_cloud3Image);
+	m_reverseCloud3.setTexture(m_cloud3Image);
+	m_reverseCloud3.setPosition(SCREEN_WIDTH, 0);
 
 	m_candleSprite.setTexture(m_candleSheet);
 	m_citSprite.setTexture(m_citImage);
@@ -120,17 +122,24 @@ void Citadel::animateSunrays()
 
 void Citadel::animateClouds()
 {
-	float pos1x = m_cloud1Sprite.getPosition().x;
-	float pos2x = m_cloud2Sprite.getPosition().x;
-	float pos3x = m_cloud3Sprite.getPosition().x;
+	float posx = m_cloud3Sprite.getPosition().x;
+	float pos1x = m_reverseCloud3.getPosition().x;
 
-	pos1x -= m_cloud1Speed;
-	pos2x -= m_cloud2Speed;
-	pos3x -= m_cloud3Speed;
+	posx -= m_cloud3Speed;
+	pos1x -= m_cloud3Speed;
 
-	m_cloud1Sprite.setPosition(pos1x, m_cloud1Sprite.getPosition().y);
-	m_cloud2Sprite.setPosition(pos2x, m_cloud2Sprite.getPosition().y);
-	m_cloud3Sprite.setPosition(pos3x, m_cloud3Sprite.getPosition().y);
+	m_cloud3Sprite.setPosition(posx, 0.0f);
+	m_reverseCloud3.setPosition(pos1x, 0.0f);
+
+	if (m_cloud3Sprite.getPosition().x <= -SCREEN_WIDTH)
+	{
+		m_cloud3Sprite.setPosition(SCREEN_WIDTH, ZERO);
+	}
+
+	if (m_reverseCloud3.getPosition().x <= -SCREEN_WIDTH)
+	{
+		m_reverseCloud3.setPosition(SCREEN_WIDTH, ZERO);
+	}
 }
 
 sf::Sprite Citadel::getSunrise()
@@ -156,6 +165,11 @@ sf::Sprite Citadel::getCloud2()
 sf::Sprite Citadel::getCloud3()
 {
 	return m_cloud3Sprite;
+}
+
+sf::Sprite Citadel::getCloud3Add()
+{
+	return m_reverseCloud3;
 }
 
 sf::Sprite Citadel::getCandle()

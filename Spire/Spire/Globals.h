@@ -15,6 +15,9 @@ const int static SOUTHWEST = 8;
 const int static SCREEN_WIDTH = 480;
 const int static SCREEN_HEIGHT = 270;
 
+// Zero
+const float static ZERO = 0.0f;
+
 // Gamemodes
 const int static START = 1;
 const int static PLAY = 2;

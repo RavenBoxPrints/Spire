@@ -52,6 +52,11 @@ void Game::processEvents()
 		{
 			processKeys(newEvent);
 		}
+
+		if (sf::Event::KeyReleased == newEvent.type)
+		{
+			processKeyRelease(newEvent);
+		}
 	}
 }
 
@@ -60,6 +65,22 @@ void Game::processKeys(sf::Event t_event)
 	if (sf::Keyboard::Escape == t_event.key.code)
 	{
 		m_exitGame = true;
+	}
+}
+
+void Game::processKeyRelease(sf::Event t_event)
+{
+	if (sf::Keyboard::Num1 == t_event.key.code)
+	{
+		m_timeOfDay = SUNRISE;
+	}
+	if (sf::Keyboard::Num2 == t_event.key.code)
+	{
+		m_timeOfDay = SUNSET;
+	}
+	if (sf::Keyboard::Num3 == t_event.key.code)
+	{
+		m_timeOfDay = NIGHT;
 	}
 }
 
@@ -100,6 +121,7 @@ void Game::renderCitadel()
 		m_renderTarget.draw(m_Citadel.getCloud1());
 		m_renderTarget.draw(m_Citadel.getCloud2());
 		m_renderTarget.draw(m_Citadel.getCloud3());
+		m_renderTarget.draw(m_Citadel.getCloud3Add());
 		m_renderTarget.draw(m_Citadel.getCitadel());
 		m_renderTarget.draw(m_Citadel.getRay1());
 		m_renderTarget.draw(m_Citadel.getRay2());
@@ -111,6 +133,7 @@ void Game::renderCitadel()
 		m_renderTarget.draw(m_Citadel.getCloud1());
 		m_renderTarget.draw(m_Citadel.getCloud2());
 		m_renderTarget.draw(m_Citadel.getCloud3());
+		m_renderTarget.draw(m_Citadel.getCloud3Add());
 		m_renderTarget.draw(m_Citadel.getCitadel());
 		m_renderTarget.draw(m_Citadel.getRay1());
 		m_renderTarget.draw(m_Citadel.getRay2());

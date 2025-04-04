@@ -20,15 +20,14 @@ private:
 
 	sf::Texture m_cloud1Image;
 	sf::Sprite m_cloud1Sprite;
-	float m_cloud1Speed = 0.1;
 
 	sf::Texture m_cloud2Image;
 	sf::Sprite m_cloud2Sprite;
-	float m_cloud2Speed = 0.2;
 
 	sf::Texture m_cloud3Image;
 	sf::Sprite m_cloud3Sprite;
-	float m_cloud3Speed = 0.3;
+	sf::Sprite m_reverseCloud3;
+	float m_cloud3Speed = 0.3f;
 
 	sf::Texture m_ray1Image;
 	sf::Sprite m_ray1Sprite;
@@ -62,6 +61,7 @@ public:
 	sf::Sprite getCloud1();
 	sf::Sprite getCloud2();
 	sf::Sprite getCloud3();
+	sf::Sprite getCloud3Add();
 	sf::Sprite getCandle();
 	sf::Sprite getCitadel();
 	sf::Sprite getRay1();
