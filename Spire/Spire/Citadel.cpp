@@ -85,6 +85,10 @@ void Citadel::animateCitadel(int t_time)
 		animateSunrays();
 		animateClouds();
 	}
+	if (t_time == NIGHT)
+	{
+		animateNight();
+	}
 }
 
 void Citadel::animateSunrays()
@@ -152,6 +156,32 @@ void Citadel::animateClouds()
 	{
 		m_reverseCloud3.setPosition(SCREEN_WIDTH, ZERO);
 	}
+}
+
+void Citadel::animateNight()
+{
+	int column = 0;
+	int row = 0;
+
+	m_starFrameCounter += m_frameIncrement;
+	m_candleFrameCounter += m_frameIncrement;
+
+	column = static_cast<int>(m_starFrameCounter);
+	row = static_cast<int>(m_candleFrameCounter);
+
+	if (column >= m_starFrame)
+	{
+		column = 0;
+		m_starFrameCounter = 0.0f;
+	}
+	if (row >= m_candleFrame)
+	{
+		row = 0;
+		m_candleFrameCounter = 0.0f;
+	}
+
+	m_starSprite.setTextureRect(sf::IntRect{column * SCREEN_WIDTH, 0, SCREEN_WIDTH, SCREEN_HEIGHT });
+	m_candleSprite.setTextureRect(sf::IntRect{ 0, row * CANDLEHEIGHT, SCREEN_WIDTH,CANDLEHEIGHT });
 }
 
 sf::Sprite Citadel::getSunrise()

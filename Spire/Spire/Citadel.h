@@ -44,12 +44,19 @@ private:
 	bool fade1 = true;
 	bool fade2 = true;
 
+	int m_currentFrame = -1;
+	int m_candleFrame = 8; // Total frames in candle animation
+	int m_starFrame = 10; // Total frames in star animation
+	float m_starFrameCounter = 0.0f;
+	float m_candleFrameCounter = 0.0f;
+	float m_frameIncrement = 0.15f; // Speed that animation cycles through frames
+
 	sf::Texture m_candleSheet;
 	sf::Sprite m_candleSprite;
+	const int CANDLEHEIGHT = 64;
 
 	sf::Texture m_starSheet;
 	sf::Sprite m_starSprite;
-
 
 public:
 
@@ -61,6 +68,7 @@ public:
 	void animateCitadel(int t_time);
 	void animateSunrays();
 	void animateClouds();
+	void animateNight();
 
 	sf::Sprite getSunrise();
 	sf::Sprite getSunset();
