@@ -53,7 +53,6 @@ private:
 
 	sf::Texture m_candleSheet;
 	sf::Sprite m_candleSprite;
-	const int CANDLEHEIGHT = 64;
 
 	sf::Texture m_starSheet;
 	sf::Sprite m_starSprite;

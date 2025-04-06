@@ -5,6 +5,7 @@
 
 #include "Globals.h"
 #include "Citadel.h"
+#include "Player.h"
 
 class Game
 {
@@ -17,6 +18,7 @@ private:
 	void render();
 
 	void renderCitadel();
+	void renderPlayer();
 
 	// View Window
 	sf::RenderWindow m_window;
@@ -26,11 +28,15 @@ private:
 
 	bool m_exitGame;
 
-	Citadel m_Citadel;
-
 	int m_gameMode = PLAY;
 	int m_level = CITADEL;
 	int m_timeOfDay = SUNRISE;
+
+	// Level Objects
+	Citadel m_citadel;
+
+	// Player Objects
+	Player m_playerOne;
 
 public:
 

@@ -98,7 +98,7 @@ void Game::update(sf::Time t_deltaTime)
 
 	if (m_gameMode == PLAY)
 	{
-		m_Citadel.animateCitadel(m_timeOfDay);
+		m_citadel.animateCitadel(m_timeOfDay);
 	}
 }
 
@@ -107,6 +107,7 @@ void Game::render()
 	m_renderTarget.clear(sf::Color::White);
 	
 	renderCitadel();
+	renderPlayer();
 
 	m_renderTarget.display();
 	m_window.draw(m_renderTargetSprite);
@@ -117,32 +118,40 @@ void Game::renderCitadel()
 {
 	if (m_gameMode == PLAY && m_timeOfDay == SUNRISE)
 	{
-		m_renderTarget.draw(m_Citadel.getSunrise());
-		m_renderTarget.draw(m_Citadel.getCloud1());
-		m_renderTarget.draw(m_Citadel.getCloud2());
-		m_renderTarget.draw(m_Citadel.getCloud3());
-		m_renderTarget.draw(m_Citadel.getCloud3Add());
-		m_renderTarget.draw(m_Citadel.getCitadel());
-		m_renderTarget.draw(m_Citadel.getRay1());
-		m_renderTarget.draw(m_Citadel.getRay2());
+		m_renderTarget.draw(m_citadel.getSunrise());
+		m_renderTarget.draw(m_citadel.getCloud1());
+		m_renderTarget.draw(m_citadel.getCloud2());
+		m_renderTarget.draw(m_citadel.getCloud3());
+		m_renderTarget.draw(m_citadel.getCloud3Add());
+		m_renderTarget.draw(m_citadel.getCitadel());
+		m_renderTarget.draw(m_citadel.getRay1());
+		m_renderTarget.draw(m_citadel.getRay2());
 	}
 	if (m_gameMode == PLAY && m_timeOfDay == SUNSET)
 	{
-		m_renderTarget.draw(m_Citadel.getSunset());
-		m_renderTarget.draw(m_Citadel.getCloud1());
-		m_renderTarget.draw(m_Citadel.getCloud2());
-		m_renderTarget.draw(m_Citadel.getCloud3());
-		m_renderTarget.draw(m_Citadel.getCloud3Add());
-		m_renderTarget.draw(m_Citadel.getCitadel());
-		m_renderTarget.draw(m_Citadel.getRay1());
-		m_renderTarget.draw(m_Citadel.getRay2());
+		m_renderTarget.draw(m_citadel.getSunset());
+		m_renderTarget.draw(m_citadel.getCloud1());
+		m_renderTarget.draw(m_citadel.getCloud2());
+		m_renderTarget.draw(m_citadel.getCloud3());
+		m_renderTarget.draw(m_citadel.getCloud3Add());
+		m_renderTarget.draw(m_citadel.getCitadel());
+		m_renderTarget.draw(m_citadel.getRay1());
+		m_renderTarget.draw(m_citadel.getRay2());
 	}
 
 	if (m_gameMode == PLAY && m_timeOfDay == NIGHT)
 	{
-		m_renderTarget.draw(m_Citadel.getNight());
-		m_renderTarget.draw(m_Citadel.getStars());
-		m_renderTarget.draw(m_Citadel.getCandle());
-		m_renderTarget.draw(m_Citadel.getCitadel());
+		m_renderTarget.draw(m_citadel.getNight());
+		m_renderTarget.draw(m_citadel.getStars());
+		m_renderTarget.draw(m_citadel.getCandle());
+		m_renderTarget.draw(m_citadel.getCitadel());
+	}
+}
+
+void Game::renderPlayer()
+{
+	if (m_gameMode == PLAY)
+	{
+		m_renderTarget.draw(m_playerOne.getPlayerBody());
 	}
 }

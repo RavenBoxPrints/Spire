@@ -15,6 +15,9 @@ const int static SOUTHWEST = 8;
 const int static SCREEN_WIDTH = 480;
 const int static SCREEN_HEIGHT = 270;
 
+// Asset dimensions
+const int static SIXFOUR = 64;
+
 // Zero
 const float static ZERO = 0.0f;
 

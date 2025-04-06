@@ -181,7 +181,7 @@ void Citadel::animateNight()
 	}
 
 	m_starSprite.setTextureRect(sf::IntRect{column * SCREEN_WIDTH, 0, SCREEN_WIDTH, SCREEN_HEIGHT });
-	m_candleSprite.setTextureRect(sf::IntRect{ 0, row * CANDLEHEIGHT, SCREEN_WIDTH,CANDLEHEIGHT });
+	m_candleSprite.setTextureRect(sf::IntRect{ 0, row * SIXFOUR, SCREEN_WIDTH, SIXFOUR});
 }
 
 sf::Sprite Citadel::getSunrise()
