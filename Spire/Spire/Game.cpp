@@ -99,6 +99,23 @@ void Game::update(sf::Time t_deltaTime)
 	if (m_gameMode == PLAY)
 	{
 		m_citadel.animateCitadel(m_timeOfDay);
+
+		if (sf::Keyboard::isKeyPressed(sf::Keyboard::Up))
+		{
+			m_playerOne.movePlayerUp();
+		}
+		if (sf::Keyboard::isKeyPressed(sf::Keyboard::Down))
+		{
+			m_playerOne.movePlayerDown();
+		}
+		if (sf::Keyboard::isKeyPressed(sf::Keyboard::Left))
+		{
+			m_playerOne.movePlayerLeft();
+		}
+		if (sf::Keyboard::isKeyPressed(sf::Keyboard::Right))
+		{
+			m_playerOne.movePlayerRight();
+		}
 	}
 }
 
