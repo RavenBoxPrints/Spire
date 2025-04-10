@@ -82,6 +82,14 @@ void Game::processKeyRelease(sf::Event t_event)
 	{
 		m_timeOfDay = NIGHT;
 	}
+
+	if ((sf::Keyboard::Up == t_event.key.code) ||
+		(sf::Keyboard::Down == t_event.key.code) ||
+		(sf::Keyboard::Left == t_event.key.code) ||
+		(sf::Keyboard::Right == t_event.key.code))
+	{
+		m_playerOne.setHeading(NONE);
+	}
 }
 
 void Game::update(sf::Time t_deltaTime)
@@ -99,22 +107,27 @@ void Game::update(sf::Time t_deltaTime)
 	if (m_gameMode == PLAY)
 	{
 		m_citadel.animateCitadel(m_timeOfDay);
+		
+		if (m_playerOne.isAlive() == true)
+		{
+			m_playerOne.animatePlayer();
 
-		if (sf::Keyboard::isKeyPressed(sf::Keyboard::Up))
-		{
-			m_playerOne.movePlayerUp();
-		}
-		if (sf::Keyboard::isKeyPressed(sf::Keyboard::Down))
-		{
-			m_playerOne.movePlayerDown();
-		}
-		if (sf::Keyboard::isKeyPressed(sf::Keyboard::Left))
-		{
-			m_playerOne.movePlayerLeft();
-		}
-		if (sf::Keyboard::isKeyPressed(sf::Keyboard::Right))
-		{
-			m_playerOne.movePlayerRight();
+			if (sf::Keyboard::isKeyPressed(sf::Keyboard::Up))
+			{
+				m_playerOne.movePlayerUp();
+			}
+			if (sf::Keyboard::isKeyPressed(sf::Keyboard::Down))
+			{
+				m_playerOne.movePlayerDown();
+			}
+			if (sf::Keyboard::isKeyPressed(sf::Keyboard::Left))
+			{
+				m_playerOne.movePlayerLeft();
+			}
+			if (sf::Keyboard::isKeyPressed(sf::Keyboard::Right))
+			{
+				m_playerOne.movePlayerRight();
+			}
 		}
 	}
 }

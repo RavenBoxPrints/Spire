@@ -1,6 +1,8 @@
 #pragma once
 
 // Headings
+const int static NONE = 0;
+
 const int static NORTH = 1;
 const int static SOUTH = 2;
 const int static EAST = 3;

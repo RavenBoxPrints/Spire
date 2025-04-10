@@ -22,63 +22,118 @@ void Player::setupPlayer()
 	m_playerSprite.setPosition(m_playerSpawn);
 }
 
+void Player::animatePlayer()
+{
+	m_frameCounter += m_frameIncrement;
+	column = static_cast<int>(m_frameCounter);
+
+	if (m_playerHeading == NONE)
+	{
+		m_totalFrames = 5;
+		m_frameIncrement = 0.15;
+		row = 0;
+	}
+
+	else if (m_playerHeading == NORTH)
+	{
+		m_totalFrames = 4;
+		m_frameIncrement = 0.15;
+		row = 1;
+	}
+
+	else if (m_playerHeading == SOUTH)
+	{
+		m_totalFrames = 4;
+		m_frameIncrement = 0.15;
+		row = 2;
+	}
+
+	else if (m_playerHeading == EAST)
+	{
+		m_totalFrames = 4;
+		m_frameIncrement = 0.15;
+		row = 4;
+	}
+
+	else if (m_playerHeading == WEST)
+	{
+		m_totalFrames = 4;
+		m_frameIncrement = 0.15;
+		row = 3;
+	}
+
+	if (column >= m_totalFrames)
+	{
+		column = 0;
+		m_frameCounter = 0.0f;
+	}
+
+	m_playerSprite.setTextureRect(sf::IntRect{ column * SIXFOUR, row * SIXFOUR, SIXFOUR, SIXFOUR });
+}
+
+void Player::setHeading(int t_heading)
+{
+	m_playerHeading = t_heading;
+}
+
 void Player::movePlayerUp()
 {
-	int posx = m_playerSprite.getPosition().x;
-	int posy = m_playerSprite.getPosition().y;
+	sf::Vector2f pos = m_playerSprite.getPosition();
 
-	m_playerHeading = NORTH;
 
-	if (posy > 155)
+	if (pos.y > 155)
 	{
-		posy -= m_playerSpeed;
-		m_playerSprite.setPosition(posx, posy);
+		m_playerHeading = NORTH;
+		pos.y -= m_playerSpeed;
+		m_playerSprite.setPosition(pos);
 	}
 }
 
 void Player::movePlayerDown()
 {
-	int posx = m_playerSprite.getPosition().x;
-	int posy = m_playerSprite.getPosition().y;
+	sf::Vector2f pos = m_playerSprite.getPosition();
 
 	m_playerHeading = SOUTH;
 
-	if (posy < SCREEN_HEIGHT)
+	if (pos.y < SCREEN_HEIGHT)
 	{
-		posy += m_playerSpeed;
-		m_playerSprite.setPosition(posx, posy);
+		pos.y += m_playerSpeed;
+		m_playerSprite.setPosition(pos);
 	}
 }
 
 void Player::movePlayerLeft()
 {
-	int posx = m_playerSprite.getPosition().x;
-	int posy = m_playerSprite.getPosition().y;
+	sf::Vector2f pos = m_playerSprite.getPosition();
 
 	m_playerHeading = WEST;
 
-	if (posx > 16)
+	if (pos.x > 16)
 	{
-		posx -= m_playerSpeed;
-		m_playerSprite.setPosition(posx, posy);
+		pos.x -= m_playerSpeed;
+		m_playerSprite.setPosition(pos);
 	}
 }
 
 void Player::movePlayerRight()
 {
-	int posx = m_playerSprite.getPosition().x;
-	int posy = m_playerSprite.getPosition().y;
+	sf::Vector2f pos = m_playerSprite.getPosition();
 
-	m_playerHeading = WEST;
+	m_playerHeading = EAST;
 
-	if (posx < SCREEN_WIDTH - 16)
+	if (pos.x < SCREEN_WIDTH - 16)
 	{
-		posx += m_playerSpeed;
-		m_playerSprite.setPosition(posx, posy);
+		pos.x += m_playerSpeed;
+		m_playerSprite.setPosition(pos);
 	}
 }
 
 sf::Sprite Player::getPlayerBody()
 {
 	return m_playerSprite;
+}
+
+bool Player::isAlive()
+{
+	return m_alive;
 }
