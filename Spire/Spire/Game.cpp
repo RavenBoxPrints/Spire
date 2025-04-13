@@ -88,7 +88,7 @@ void Game::processKeyRelease(sf::Event t_event)
 		(sf::Keyboard::Left == t_event.key.code) ||
 		(sf::Keyboard::Right == t_event.key.code))
 	{
-		m_playerOne.setHeading(NONE);
+		m_playerOne.setAction(STAND);
 	}
 }
 

@@ -27,39 +27,80 @@ void Player::animatePlayer()
 	m_frameCounter += m_frameIncrement;
 	column = static_cast<int>(m_frameCounter);
 
-	if (m_playerHeading == NONE)
+	if (m_playerHeading == NORTH)
 	{
-		m_totalFrames = 5;
-		m_frameIncrement = 0.15;
-		row = 0;
-	}
+		m_playerSprite.setScale(1.0f, 1.0f);
 
-	else if (m_playerHeading == NORTH)
-	{
-		m_totalFrames = 4;
-		m_frameIncrement = 0.15;
-		row = 1;
+		if (m_playerAction == STAND)
+		{
+			m_totalFrames = 6;
+			m_frameIncrement = 0.15;
+			row = 1;
+		}
+
+		else if (m_playerAction == WALK)
+		{
+			m_totalFrames = 4;
+			m_frameIncrement = 0.3;
+			row = 4;
+		}
 	}
 
 	else if (m_playerHeading == SOUTH)
 	{
-		m_totalFrames = 4;
-		m_frameIncrement = 0.15;
-		row = 2;
+		m_playerSprite.setScale(1.0f, 1.0f);
+
+		if (m_playerAction == STAND)
+		{
+			m_totalFrames = 6;
+			m_frameIncrement = 0.15;
+			row = 0;
+		}
+
+		else if (m_playerAction == WALK)
+		{
+			m_totalFrames = 4;
+			m_frameIncrement = 0.3;
+			row = 3;
+		}
 	}
 
 	else if (m_playerHeading == EAST)
 	{
-		m_totalFrames = 4;
-		m_frameIncrement = 0.15;
-		row = 4;
+		m_playerSprite.setScale(1.0f, 1.0f);
+
+		if (m_playerAction == STAND)
+		{
+			m_totalFrames = 6;
+			m_frameIncrement = 0.15;
+			row = 2;
+		}
+
+		if (m_playerAction == WALK)
+		{
+			m_totalFrames = 4;
+			m_frameIncrement = 0.3;
+			row = 5;
+		}
 	}
 
 	else if (m_playerHeading == WEST)
 	{
-		m_totalFrames = 4;
-		m_frameIncrement = 0.15;
-		row = 3;
+		m_playerSprite.setScale(-1.0f, 1.0f);
+
+		if (m_playerAction == STAND)
+		{
+			m_totalFrames = 6;
+			m_frameIncrement = 0.15;
+			row = 2;
+		}
+
+		if (m_playerAction == WALK)
+		{
+			m_totalFrames = 4;
+			m_frameIncrement = 0.3;
+			row = 5;
+		}
 	}
 
 	if (column >= m_totalFrames)
@@ -76,14 +117,20 @@ void Player::setHeading(int t_heading)
 	m_playerHeading = t_heading;
 }
 
+void Player::setAction(int t_action)
+{
+	m_playerAction = t_action;
+}
+
 void Player::movePlayerUp()
 {
 	sf::Vector2f pos = m_playerSprite.getPosition();
 
+	m_playerHeading = NORTH;
 
 	if (pos.y > 155)
 	{
-		m_playerHeading = NORTH;
+		m_playerAction = WALK;
 		pos.y -= m_playerSpeed;
 		m_playerSprite.setPosition(pos);
 	}
@@ -97,6 +144,7 @@ void Player::movePlayerDown()
 
 	if (pos.y < SCREEN_HEIGHT)
 	{
+		m_playerAction = WALK;
 		pos.y += m_playerSpeed;
 		m_playerSprite.setPosition(pos);
 	}
@@ -110,6 +158,7 @@ void Player::movePlayerLeft()
 
 	if (pos.x > 16)
 	{
+		m_playerAction = WALK;
 		pos.x -= m_playerSpeed;
 		m_playerSprite.setPosition(pos);
 	}
@@ -123,6 +172,7 @@ void Player::movePlayerRight()
 
 	if (pos.x < SCREEN_WIDTH - 16)
 	{
+		m_playerAction = WALK;
 		pos.x += m_playerSpeed;
 		m_playerSprite.setPosition(pos);
 	}

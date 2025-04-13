@@ -13,6 +13,12 @@ const int static SOUTHEAST = 6;
 const int static NORTHWEST = 7;
 const int static SOUTHWEST = 8;
 
+// Player Actions
+const int static STAND = 0;
+const int static WALK = 1;
+const int static ATTACK = 2;
+const int static DIE = 3;
+
 // Screen Dimensions
 const int static SCREEN_WIDTH = 480;
 const int static SCREEN_HEIGHT = 270;
