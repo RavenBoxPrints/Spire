@@ -20,12 +20,20 @@ private:
 	int m_health = 4;
 	float m_speed = 1.0f;
 
+	int column = 0;
+	int row = 0;
+	int m_totalFrames = 5;
+	float m_frameCounter = 0.0f;
+	float m_frameIncrement = 0.15f;
+
 
 public:
 
 	Rat();
 
 	void spawn();
+	void animate();
+
 	sf::Sprite getBody();
 	bool getAlive();
 

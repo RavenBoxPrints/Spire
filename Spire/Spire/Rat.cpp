@@ -41,6 +41,36 @@ void Rat::spawn()
 	}
 }
 
+void Rat::animate()
+{
+	m_frameCounter += m_frameIncrement;
+	column = static_cast<int>(m_frameCounter);
+
+	if (m_action == WALK)
+	{
+		if (m_heading == EAST)
+		{
+			m_ratSprite.setScale(1.0f, 1.0f);
+			m_totalFrames = 5;
+			m_frameIncrement = 0.15;
+		}
+
+		if (m_heading == WEST)
+		{
+			m_ratSprite.setScale(-1.0f, 1.0f);
+			m_totalFrames = 5;
+			m_frameIncrement = 0.15;
+		}
+	}
+
+	if (column >= m_totalFrames)
+	{
+		m_frameCounter = 0.0f;
+	}
+
+	m_ratSprite.setTextureRect({ column * 80, row * 32, 80, 32 });
+}
+
 sf::Sprite Rat::getBody()
 {
 	return m_ratSprite;

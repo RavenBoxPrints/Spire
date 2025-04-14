@@ -107,6 +107,11 @@ void Game::update(sf::Time t_deltaTime)
 	if (m_gameMode == PLAY)
 	{
 		m_citadel.animateCitadel(m_timeOfDay);
+
+		if (m_ratOne.getAlive() == true)
+		{
+			m_ratOne.animate();
+		}
 		
 		if (m_playerOne.isAlive() == true)
 		{
