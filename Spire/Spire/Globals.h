@@ -1,8 +1,11 @@
 #pragma once
 
-// Headings
-const int static NONE = 0;
+#include <SFML/Graphics.hpp>
+#include <iostream>
+#include <cstdlib>  // include support for randomizing
+#include <ctime>   // supports ctime function
 
+// Headings
 const int static NORTH = 1;
 const int static SOUTH = 2;
 const int static EAST = 3;
@@ -13,7 +16,7 @@ const int static SOUTHEAST = 6;
 const int static NORTHWEST = 7;
 const int static SOUTHWEST = 8;
 
-// Player Actions
+// Actions
 const int static STAND = 0;
 const int static WALK = 1;
 const int static ATTACK = 2;

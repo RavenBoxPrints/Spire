@@ -138,6 +138,7 @@ void Game::render()
 	
 	renderCitadel();
 	renderPlayer();
+	renderEnemy();
 
 	m_renderTarget.display();
 	m_window.draw(m_renderTargetSprite);
@@ -183,5 +184,13 @@ void Game::renderPlayer()
 	if (m_gameMode == PLAY)
 	{
 		m_renderTarget.draw(m_playerOne.getPlayerBody());
+	}
+}
+
+void Game::renderEnemy()
+{
+	if (m_gameMode == PLAY && m_ratOne.getAlive() == true)
+	{
+		m_renderTarget.draw(m_ratOne.getBody());
 	}
 }

@@ -1,11 +1,9 @@
 #pragma once
 
-#include <SFML/Graphics.hpp>
-#include <iostream>
-
 #include "Globals.h"
 #include "Citadel.h"
 #include "Player.h"
+#include "Rat.h"
 
 class Game
 {
@@ -19,6 +17,7 @@ private:
 
 	void renderCitadel();
 	void renderPlayer();
+	void renderEnemy();
 
 	// View Window
 	sf::RenderWindow m_window;
@@ -37,6 +36,9 @@ private:
 
 	// Player Objects
 	Player m_playerOne;
+
+	// Enemy Objects
+	Rat m_ratOne;
 
 public:
 

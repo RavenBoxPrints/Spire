@@ -17,6 +17,8 @@
 
 int main()
 {
+	srand((int)time(nullptr)); // set the seed once
+
 	Game game;
 	game.run();
 
