@@ -18,7 +18,7 @@ private:
 	int m_action = WALK;
 
 	int m_health = 4;
-	float m_speed = 1.0f;
+	float m_speed = 0.5f;
 
 	int column = 0;
 	int row = 0;
@@ -33,6 +33,7 @@ public:
 
 	void spawn();
 	void animate();
+	void move(sf::Vector2f t_playerPos);
 
 	sf::Sprite getBody();
 	bool getAlive();

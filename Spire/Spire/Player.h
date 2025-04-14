@@ -32,11 +32,13 @@ public:
 	void animatePlayer();
 	void setHeading(int t_heading);
 	void setAction(int t_action);
+	void move();
 	void movePlayerUp();
 	void movePlayerDown();
 	void movePlayerLeft();
 	void movePlayerRight();
-
+	
+	sf::Vector2f getLocation();
 	sf::Sprite getPlayerBody();
 	bool isAlive();
 };

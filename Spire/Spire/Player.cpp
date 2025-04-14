@@ -122,6 +122,26 @@ void Player::setAction(int t_action)
 	m_playerAction = t_action;
 }
 
+void Player::move()
+{
+	if (sf::Keyboard::isKeyPressed(sf::Keyboard::Up))
+	{
+		movePlayerUp();
+	}
+	if (sf::Keyboard::isKeyPressed(sf::Keyboard::Down))
+	{
+		movePlayerDown();
+	}
+	if (sf::Keyboard::isKeyPressed(sf::Keyboard::Left))
+	{
+		movePlayerLeft();
+	}
+	if (sf::Keyboard::isKeyPressed(sf::Keyboard::Right))
+	{
+		movePlayerRight();
+	}
+}
+
 void Player::movePlayerUp()
 {
 	sf::Vector2f pos = m_playerSprite.getPosition();
@@ -176,6 +196,11 @@ void Player::movePlayerRight()
 		pos.x += m_playerSpeed;
 		m_playerSprite.setPosition(pos);
 	}
+}
+
+sf::Vector2f Player::getLocation()
+{
+	return m_playerSprite.getPosition();
 }
 
 sf::Sprite Player::getPlayerBody()

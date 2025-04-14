@@ -111,28 +111,13 @@ void Game::update(sf::Time t_deltaTime)
 		if (m_ratOne.getAlive() == true)
 		{
 			m_ratOne.animate();
+			m_ratOne.move(m_playerOne.getLocation());
 		}
 		
 		if (m_playerOne.isAlive() == true)
 		{
 			m_playerOne.animatePlayer();
-
-			if (sf::Keyboard::isKeyPressed(sf::Keyboard::Up))
-			{
-				m_playerOne.movePlayerUp();
-			}
-			if (sf::Keyboard::isKeyPressed(sf::Keyboard::Down))
-			{
-				m_playerOne.movePlayerDown();
-			}
-			if (sf::Keyboard::isKeyPressed(sf::Keyboard::Left))
-			{
-				m_playerOne.movePlayerLeft();
-			}
-			if (sf::Keyboard::isKeyPressed(sf::Keyboard::Right))
-			{
-				m_playerOne.movePlayerRight();
-			}
+			m_playerOne.move();
 		}
 	}
 }

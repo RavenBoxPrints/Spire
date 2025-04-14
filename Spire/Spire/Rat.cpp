@@ -19,7 +19,7 @@ void Rat::setup()
 {
 	m_ratSprite.setTexture(m_ratTexture);
 	m_ratSprite.setTextureRect(sf::IntRect(0, 0, 80, 32));
-	m_ratSprite.setOrigin(58, 32);
+	m_ratSprite.setOrigin(45, 32);
 }
 
 void Rat::spawn()
@@ -51,15 +51,11 @@ void Rat::animate()
 		if (m_heading == EAST)
 		{
 			m_ratSprite.setScale(1.0f, 1.0f);
-			m_totalFrames = 5;
-			m_frameIncrement = 0.15;
 		}
 
 		if (m_heading == WEST)
 		{
 			m_ratSprite.setScale(-1.0f, 1.0f);
-			m_totalFrames = 5;
-			m_frameIncrement = 0.15;
 		}
 	}
 
@@ -68,7 +64,36 @@ void Rat::animate()
 		m_frameCounter = 0.0f;
 	}
 
-	m_ratSprite.setTextureRect({ column * 80, row * 32, 80, 32 });
+	m_ratSprite.setTextureRect({ column * 80, 0, 80, 32 });
+}
+
+void Rat::move(sf::Vector2f t_playerPos)
+{
+	sf::Vector2f m_ratPos = m_ratSprite.getPosition();
+
+	if (m_ratPos.x < t_playerPos.x)
+	{
+		m_heading = EAST;
+		m_ratPos.x += m_speed;
+	}
+
+	if (m_ratPos.x > t_playerPos.x)
+	{
+		m_heading = WEST;
+		m_ratPos.x -= m_speed;
+	}
+
+	if (m_ratPos.y < t_playerPos.y)
+	{
+		m_ratPos.y += m_speed;
+	}
+
+	if (m_ratPos.y > t_playerPos.y)
+	{
+		m_ratPos.y -= m_speed;
+	}
+
+	m_ratSprite.setPosition(m_ratPos);
 }
 
 sf::Sprite Rat::getBody()
