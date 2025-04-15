@@ -18,7 +18,7 @@ void Player::setupPlayer()
 {
 	m_playerSprite.setTexture(m_playerTexture);
 	m_playerSprite.setTextureRect(sf::IntRect{ 0, 0, SIXFOUR, SIXFOUR});
-	m_playerSprite.setOrigin(32, SIXFOUR - 4);
+	m_playerSprite.setOrigin(32, SIXFOUR - 7);
 	m_playerSprite.setPosition(m_playerSpawn);
 }
 

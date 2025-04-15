@@ -16,6 +16,10 @@ const int static SOUTHEAST = 6;
 const int static NORTHWEST = 7;
 const int static SOUTHWEST = 8;
 
+// Front or Behind Player
+const int static FRONT = 1;
+const int static BEHIND = 2;
+
 // Actions
 const int static STAND = 0;
 const int static WALK = 1;

@@ -19,7 +19,14 @@ void Rat::setup()
 {
 	m_ratSprite.setTexture(m_ratTexture);
 	m_ratSprite.setTextureRect(sf::IntRect(0, 0, 80, 32));
-	m_ratSprite.setOrigin(45, 32);
+	m_ratSprite.setOrigin(65, 32);
+
+	m_detect.setRadius(100.0f);
+	m_detect.setOrigin(100.0f, 100.0f);
+	m_detect.setScale(1.0f, 0.5f);
+	m_detect.setFillColor(sf::Color::Transparent);
+	m_detect.setOutlineColor(sf::Color::Red);
+	m_detect.setOutlineThickness(1);
 }
 
 void Rat::spawn()
@@ -29,15 +36,13 @@ void Rat::spawn()
 	if (m_heading == EAST)
 	{
 		m_ratSprite.setScale(1.0f, 1.0f);
-		// m_ratSprite.setPosition(0.0f, (rand() % 1) + SCREEN_HEIGHT);
-		m_ratSprite.setPosition(100.0f, (SCREEN_HEIGHT - 50));
+		m_ratSprite.setPosition(0.0f, (rand() % 1) + SCREEN_HEIGHT);
 	}
 
 	if (m_heading == WEST)
 	{
 		m_ratSprite.setScale(-1.0f, 1.0f);
-		// m_ratSprite.setPosition(SCREEN_WIDTH, (rand() % 1) + SCREEN_HEIGHT);
-		m_ratSprite.setPosition(SCREEN_WIDTH - 100.0f, (SCREEN_HEIGHT - 50));
+		m_ratSprite.setPosition(SCREEN_WIDTH, (rand() % 1) + SCREEN_HEIGHT);
 	}
 }
 
@@ -71,13 +76,13 @@ void Rat::move(sf::Vector2f t_playerPos)
 {
 	sf::Vector2f m_ratPos = m_ratSprite.getPosition();
 
-	if (m_ratPos.x < t_playerPos.x)
+	if (m_ratPos.x < t_playerPos.x - SPACE)
 	{
 		m_heading = EAST;
 		m_ratPos.x += m_speed;
 	}
 
-	if (m_ratPos.x > t_playerPos.x)
+	if (m_ratPos.x > t_playerPos.x + SPACE)
 	{
 		m_heading = WEST;
 		m_ratPos.x -= m_speed;
@@ -86,14 +91,17 @@ void Rat::move(sf::Vector2f t_playerPos)
 	if (m_ratPos.y < t_playerPos.y)
 	{
 		m_ratPos.y += m_speed;
+		m_layer = BEHIND;
 	}
 
 	if (m_ratPos.y > t_playerPos.y)
 	{
 		m_ratPos.y -= m_speed;
+		m_layer = FRONT;
 	}
 
 	m_ratSprite.setPosition(m_ratPos);
+	m_detect.setPosition(m_ratPos.x,m_ratPos.y - 22);
 }
 
 sf::Sprite Rat::getBody()
@@ -101,7 +109,17 @@ sf::Sprite Rat::getBody()
 	return m_ratSprite;
 }
 
+sf::CircleShape Rat::getDetect()
+{
+	return m_detect;
+}
+
 bool Rat::getAlive()
 {
 	return m_alive;
+}
+
+int Rat::getLayer()
+{
+	return m_layer;
 }

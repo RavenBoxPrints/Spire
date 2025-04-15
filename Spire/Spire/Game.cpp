@@ -1,7 +1,7 @@
 #include "Game.h"
 
 Game::Game() :
-	m_window{ sf::VideoMode{ 960U, 480U, 32U }, "SFML Game" },
+	m_window{ sf::VideoMode{ 1440U, 810U, 32U }, "SFML Game" },
 	m_exitGame{false}
 {
 	/// Creating a viewport that scales images to the window size
@@ -108,10 +108,10 @@ void Game::update(sf::Time t_deltaTime)
 	{
 		m_citadel.animateCitadel(m_timeOfDay);
 
-		if (m_ratOne.getAlive() == true)
+		if (m_rat.getAlive() == true)
 		{
-			m_ratOne.animate();
-			m_ratOne.move(m_playerOne.getLocation());
+			m_rat.animate();
+			m_rat.move(m_playerOne.getLocation());
 		}
 		
 		if (m_playerOne.isAlive() == true)
@@ -127,8 +127,18 @@ void Game::render()
 	m_renderTarget.clear(sf::Color::White);
 	
 	renderCitadel();
+
+	if (m_rat.getLayer() == BEHIND)
+	{
+		renderEnemy();
+	}
+
 	renderPlayer();
-	renderEnemy();
+
+	if (m_rat.getLayer() == FRONT)
+	{
+		renderEnemy();
+	}
 
 	m_renderTarget.display();
 	m_window.draw(m_renderTargetSprite);
@@ -179,8 +189,12 @@ void Game::renderPlayer()
 
 void Game::renderEnemy()
 {
-	if (m_gameMode == PLAY && m_ratOne.getAlive() == true)
+	if (m_gameMode == PLAY)
 	{
-		m_renderTarget.draw(m_ratOne.getBody());
+		if (m_rat.getAlive() == true)
+		{
+			m_renderTarget.draw(m_rat.getBody());
+			m_renderTarget.draw(m_rat.getDetect());
+		}
 	}
 }

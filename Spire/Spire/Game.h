@@ -38,7 +38,7 @@ private:
 	Player m_playerOne;
 
 	// Enemy Objects
-	Rat m_ratOne;
+	Rat m_rat;
 
 public:
 

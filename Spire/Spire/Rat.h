@@ -13,9 +13,14 @@ private:
 	sf::Texture m_ratTexture;
 	sf::Sprite m_ratSprite;
 
+	sf::CircleShape m_detect;
+
 	bool m_alive = true;
 	int m_heading;
 	int m_action = WALK;
+	int m_layer = FRONT;
+
+	static const int SPACE = 20; // Distance between sprites
 
 	int m_health = 4;
 	float m_speed = 0.5f;
@@ -36,6 +41,8 @@ public:
 	void move(sf::Vector2f t_playerPos);
 
 	sf::Sprite getBody();
+	sf::CircleShape getDetect();
 	bool getAlive();
+	int getLayer();
 
 };
