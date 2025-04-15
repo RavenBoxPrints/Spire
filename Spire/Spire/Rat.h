@@ -23,7 +23,7 @@ private:
 	static const int SPACE = 20; // Distance between sprites
 
 	int m_health = 4;
-	float m_speed = 0.5f;
+	float m_speed = 0.1f;
 
 	int column = 0;
 	int row = 0;

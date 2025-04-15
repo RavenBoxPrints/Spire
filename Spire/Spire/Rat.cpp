@@ -26,7 +26,7 @@ void Rat::setup()
 	m_detect.setScale(1.0f, 0.5f);
 	m_detect.setFillColor(sf::Color::Transparent);
 	m_detect.setOutlineColor(sf::Color::Red);
-	m_detect.setOutlineThickness(1);
+	m_detect.setOutlineThickness(2);
 }
 
 void Rat::spawn()
@@ -36,13 +36,13 @@ void Rat::spawn()
 	if (m_heading == EAST)
 	{
 		m_ratSprite.setScale(1.0f, 1.0f);
-		m_ratSprite.setPosition(0.0f, (rand() % 1) + SCREEN_HEIGHT);
+		m_ratSprite.setPosition((rand() % 26),(rand () % 116) + 155); // (0 - 25, 155 - 270)
 	}
 
 	if (m_heading == WEST)
 	{
 		m_ratSprite.setScale(-1.0f, 1.0f);
-		m_ratSprite.setPosition(SCREEN_WIDTH, (rand() % 1) + SCREEN_HEIGHT);
+		m_ratSprite.setPosition((rand() % 26) + 455, (rand() % 116) + 155); // (455 - 480, 155 - 270)
 	}
 }
 
