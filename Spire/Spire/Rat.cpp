@@ -19,7 +19,7 @@ void Rat::setup()
 {
 	m_ratSprite.setTexture(m_ratTexture);
 	m_ratSprite.setTextureRect(sf::IntRect(0, 0, 80, 32));
-	m_ratSprite.setOrigin(65, 32);
+	m_ratSprite.setOrigin(40, 32);
 
 	m_detect.setRadius(100.0f);
 	m_detect.setOrigin(100.0f, 100.0f);
@@ -89,7 +89,7 @@ void Rat::move()
 	{
 		m_direction = NORTH;
 	}
-	if (m_ratPos.x > SCREEN_WIDTH)
+	if (m_ratPos.x > 430)
 	{
 		m_direction = WEST;
 	}
@@ -110,17 +110,27 @@ void Rat::move()
 	}
 	if (m_direction == EAST)
 	{
+		m_heading = EAST;
 		m_ratPos.x += m_speed;
 		m_ratSprite.setScale(1.0f, 1.0f);
 	}
 	if (m_direction == WEST)
 	{
+		m_heading = WEST;
 		m_ratPos.x -= m_speed;
 		m_ratSprite.setScale(-1.0f, 1.0f);
 	}
 
+	if (m_heading == EAST)
+	{
+		m_detect.setPosition((m_ratPos.x + 40), (m_ratPos.y - 16));
+	}
+	if (m_heading == WEST)
+	{
+		m_detect.setPosition((m_ratPos.x - 40), (m_ratPos.y - 16));
+	}
+
 	m_ratSprite.setPosition(m_ratPos);
-	m_detect.setPosition(m_ratPos.x, m_ratPos.y - 22);
 
 	m_moveTimer++;
 }
@@ -151,7 +161,15 @@ void Rat::pursue(sf::Vector2f t_playerPos)
 	}	
 
 	m_ratSprite.setPosition(m_ratPos);
-	m_detect.setPosition(m_ratPos.x,m_ratPos.y - 22);
+
+	if (m_heading == EAST)
+	{
+		m_detect.setPosition((m_ratPos.x + 40), (m_ratPos.y - 16));
+	}
+	if (m_heading == WEST)
+	{
+		m_detect.setPosition((m_ratPos.x - 40), (m_ratPos.y - 16));
+	}
 }
 
 sf::Sprite Rat::getBody()

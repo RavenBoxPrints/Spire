@@ -23,7 +23,7 @@ private:
 	int m_action = WALK;
 	int m_layer = FRONT;
 
-	static const int SPACE = 20; // Distance between sprites
+	static const int SPACE = 40; // Distance between sprites
 
 	int m_health = 4;
 	float m_speed = 0.8f;
