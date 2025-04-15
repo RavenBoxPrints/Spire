@@ -149,12 +149,12 @@ void Citadel::animateClouds()
 
 	if (m_cloud3Sprite.getPosition().x <= -SCREEN_WIDTH)
 	{
-		m_cloud3Sprite.setPosition(SCREEN_WIDTH, ZERO);
+		m_cloud3Sprite.setPosition(SCREEN_WIDTH, 0);
 	}
 
 	if (m_reverseCloud3.getPosition().x <= -SCREEN_WIDTH)
 	{
-		m_reverseCloud3.setPosition(SCREEN_WIDTH, ZERO);
+		m_reverseCloud3.setPosition(SCREEN_WIDTH, 0);
 	}
 }
 
@@ -181,7 +181,7 @@ void Citadel::animateNight()
 	}
 
 	m_starSprite.setTextureRect(sf::IntRect{column * SCREEN_WIDTH, 0, SCREEN_WIDTH, SCREEN_HEIGHT });
-	m_candleSprite.setTextureRect(sf::IntRect{ 0, row * SIXFOUR, SCREEN_WIDTH, SIXFOUR});
+	m_candleSprite.setTextureRect(sf::IntRect{ 0, row * 64, SCREEN_WIDTH, 64});
 }
 
 sf::Sprite Citadel::getSunrise()

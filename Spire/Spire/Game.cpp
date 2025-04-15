@@ -111,7 +111,16 @@ void Game::update(sf::Time t_deltaTime)
 		if (m_rat.getAlive() == true)
 		{
 			m_rat.animate();
-			m_rat.move(m_playerOne.getLocation());
+
+			if (m_rat.getChase() == true)
+			{
+				m_rat.pursue(m_playerOne.getLocation());
+			}
+			else
+			{
+				m_rat.move();
+			}
+
 		}
 		
 		if (m_playerOne.isAlive() == true)

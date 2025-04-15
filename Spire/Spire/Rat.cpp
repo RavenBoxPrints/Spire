@@ -36,13 +36,13 @@ void Rat::spawn()
 	if (m_heading == EAST)
 	{
 		m_ratSprite.setScale(1.0f, 1.0f);
-		m_ratSprite.setPosition((rand() % 26),(rand () % 116) + 155); // (0 - 25, 155 - 270)
+		m_ratSprite.setPosition((rand() % 26) - 50,(rand () % 116) + 155); // (0 - 25, 155 - 270)
 	}
 
 	if (m_heading == WEST)
 	{
 		m_ratSprite.setScale(-1.0f, 1.0f);
-		m_ratSprite.setPosition((rand() % 26) + 455, (rand() % 116) + 155); // (455 - 480, 155 - 270)
+		m_ratSprite.setPosition((rand() % 26) + 480, (rand() % 116) + 155); // (455 - 480, 155 - 270)
 	}
 }
 
@@ -72,7 +72,60 @@ void Rat::animate()
 	m_ratSprite.setTextureRect({ column * 80, 0, 80, 32 });
 }
 
-void Rat::move(sf::Vector2f t_playerPos)
+void Rat::move()
+{
+	sf::Vector2f m_ratPos = m_ratSprite.getPosition();
+
+	if (m_moveTimer == 200)
+	{
+		m_moveTimer = 0;
+		m_direction = (rand() % 4) + 1;
+	}
+	if (m_ratPos.y < 165)
+	{
+		m_direction = SOUTH;
+	}
+	if (m_ratPos.y > SCREEN_HEIGHT)
+	{
+		m_direction = NORTH;
+	}
+	if (m_ratPos.x > SCREEN_WIDTH)
+	{
+		m_direction = WEST;
+	}
+	if (m_ratPos.x < 50)
+	{
+		m_direction = EAST;
+	}
+
+	if (m_direction == NORTH)
+	{
+		m_ratPos.y -= m_speed;
+
+	}
+	if (m_direction == SOUTH)
+	{
+		m_ratPos.y += m_speed;
+
+	}
+	if (m_direction == EAST)
+	{
+		m_ratPos.x += m_speed;
+		m_ratSprite.setScale(1.0f, 1.0f);
+	}
+	if (m_direction == WEST)
+	{
+		m_ratPos.x -= m_speed;
+		m_ratSprite.setScale(-1.0f, 1.0f);
+	}
+
+	m_ratSprite.setPosition(m_ratPos);
+	m_detect.setPosition(m_ratPos.x, m_ratPos.y - 22);
+
+	m_moveTimer++;
+}
+
+void Rat::pursue(sf::Vector2f t_playerPos)
 {
 	sf::Vector2f m_ratPos = m_ratSprite.getPosition();
 
@@ -81,24 +134,21 @@ void Rat::move(sf::Vector2f t_playerPos)
 		m_heading = EAST;
 		m_ratPos.x += m_speed;
 	}
-
 	if (m_ratPos.x > t_playerPos.x + SPACE)
 	{
 		m_heading = WEST;
 		m_ratPos.x -= m_speed;
 	}
-
 	if (m_ratPos.y < t_playerPos.y)
 	{
 		m_ratPos.y += m_speed;
 		m_layer = BEHIND;
 	}
-
 	if (m_ratPos.y > t_playerPos.y)
 	{
 		m_ratPos.y -= m_speed;
 		m_layer = FRONT;
-	}
+	}	
 
 	m_ratSprite.setPosition(m_ratPos);
 	m_detect.setPosition(m_ratPos.x,m_ratPos.y - 22);
@@ -117,6 +167,11 @@ sf::CircleShape Rat::getDetect()
 bool Rat::getAlive()
 {
 	return m_alive;
+}
+
+bool Rat::getChase()
+{
+	return detected;
 }
 
 int Rat::getLayer()

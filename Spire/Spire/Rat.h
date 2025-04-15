@@ -14,16 +14,19 @@ private:
 	sf::Sprite m_ratSprite;
 
 	sf::CircleShape m_detect;
+	bool detected = false;
 
 	bool m_alive = true;
 	int m_heading;
+	int m_direction;
+	int m_moveTimer = 200;
 	int m_action = WALK;
 	int m_layer = FRONT;
 
 	static const int SPACE = 20; // Distance between sprites
 
 	int m_health = 4;
-	float m_speed = 0.1f;
+	float m_speed = 0.8f;
 
 	int column = 0;
 	int row = 0;
@@ -38,11 +41,13 @@ public:
 
 	void spawn();
 	void animate();
-	void move(sf::Vector2f t_playerPos);
+	void move();
+	void pursue(sf::Vector2f t_playerPos);
 
 	sf::Sprite getBody();
 	sf::CircleShape getDetect();
 	bool getAlive();
+	bool getChase();
 	int getLayer();
 
 };

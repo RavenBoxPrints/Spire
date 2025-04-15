@@ -17,8 +17,8 @@ void Player::loadPlayerDetail()
 void Player::setupPlayer()
 {
 	m_playerSprite.setTexture(m_playerTexture);
-	m_playerSprite.setTextureRect(sf::IntRect{ 0, 0, SIXFOUR, SIXFOUR});
-	m_playerSprite.setOrigin(32, SIXFOUR - 7);
+	m_playerSprite.setTextureRect(sf::IntRect{ 0, 0, 64, 64});
+	m_playerSprite.setOrigin(32, 57);
 	m_playerSprite.setPosition(m_playerSpawn);
 }
 
@@ -34,14 +34,14 @@ void Player::animatePlayer()
 		if (m_playerAction == STAND)
 		{
 			m_totalFrames = 6;
-			m_frameIncrement = 0.15;
+			m_frameIncrement = 0.15f;
 			row = 1;
 		}
 
 		else if (m_playerAction == WALK)
 		{
 			m_totalFrames = 4;
-			m_frameIncrement = 0.3;
+			m_frameIncrement = 0.3f;
 			row = 4;
 		}
 	}
@@ -53,14 +53,14 @@ void Player::animatePlayer()
 		if (m_playerAction == STAND)
 		{
 			m_totalFrames = 6;
-			m_frameIncrement = 0.15;
+			m_frameIncrement = 0.15f;
 			row = 0;
 		}
 
 		else if (m_playerAction == WALK)
 		{
 			m_totalFrames = 4;
-			m_frameIncrement = 0.3;
+			m_frameIncrement = 0.3f;
 			row = 3;
 		}
 	}
@@ -72,14 +72,14 @@ void Player::animatePlayer()
 		if (m_playerAction == STAND)
 		{
 			m_totalFrames = 6;
-			m_frameIncrement = 0.15;
+			m_frameIncrement = 0.15f;
 			row = 2;
 		}
 
 		if (m_playerAction == WALK)
 		{
 			m_totalFrames = 4;
-			m_frameIncrement = 0.3;
+			m_frameIncrement = 0.3f;
 			row = 5;
 		}
 	}
@@ -91,14 +91,14 @@ void Player::animatePlayer()
 		if (m_playerAction == STAND)
 		{
 			m_totalFrames = 6;
-			m_frameIncrement = 0.15;
+			m_frameIncrement = 0.15f;
 			row = 2;
 		}
 
 		if (m_playerAction == WALK)
 		{
 			m_totalFrames = 4;
-			m_frameIncrement = 0.3;
+			m_frameIncrement = 0.3f;
 			row = 5;
 		}
 	}
@@ -109,7 +109,7 @@ void Player::animatePlayer()
 		m_frameCounter = 0.0f;
 	}
 
-	m_playerSprite.setTextureRect(sf::IntRect{ column * SIXFOUR, row * SIXFOUR, SIXFOUR, SIXFOUR });
+	m_playerSprite.setTextureRect(sf::IntRect{ column * 64, row * 64, 64, 64 });
 }
 
 void Player::setHeading(int t_heading)
