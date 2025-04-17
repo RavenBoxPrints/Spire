@@ -18,15 +18,14 @@ private:
 
 	bool m_alive = true;
 	int m_heading;
-	int m_direction;
-	int m_moveTimer = 200;
+	int m_moveTimer = 100;
 	int m_action = WALK;
 	int m_layer = FRONT;
 
 	static const int SPACE = 40; // Distance between sprites
 
 	int m_health = 4;
-	float m_speed = 0.8f;
+	float m_speed = 0.2f;
 
 	int column = 0;
 	int row = 0;
@@ -41,7 +40,7 @@ public:
 
 	void spawn();
 	void animate();
-	void move();
+	void move(sf::Vector2f t_playerPos);
 	void pursue(sf::Vector2f t_playerPos);
 
 	sf::Sprite getBody();

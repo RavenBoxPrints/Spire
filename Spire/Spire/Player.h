@@ -17,7 +17,7 @@ private:
 
 	int m_playerHeading = SOUTH;
 	int m_playerAction = STAND;
-	int m_playerSpeed = 3;
+	int m_playerSpeed = 2;
 
 	int column = 0;
 	int row = 0;

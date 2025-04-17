@@ -86,7 +86,11 @@ void Game::processKeyRelease(sf::Event t_event)
 	if ((sf::Keyboard::Up == t_event.key.code) ||
 		(sf::Keyboard::Down == t_event.key.code) ||
 		(sf::Keyboard::Left == t_event.key.code) ||
-		(sf::Keyboard::Right == t_event.key.code))
+		(sf::Keyboard::Right == t_event.key.code) ||
+		(sf::Keyboard::W == t_event.key.code) ||
+		(sf::Keyboard::S == t_event.key.code) ||
+		(sf::Keyboard::A == t_event.key.code) ||
+		(sf::Keyboard::D == t_event.key.code))
 	{
 		m_playerOne.setAction(STAND);
 	}
@@ -118,7 +122,7 @@ void Game::update(sf::Time t_deltaTime)
 			}
 			else
 			{
-				m_rat.move();
+				m_rat.move(m_playerOne.getLocation());
 			}
 
 		}

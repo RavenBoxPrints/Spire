@@ -41,7 +41,7 @@ void Player::animatePlayer()
 		else if (m_playerAction == WALK)
 		{
 			m_totalFrames = 4;
-			m_frameIncrement = 0.3f;
+			m_frameIncrement = 0.15f;
 			row = 4;
 		}
 	}
@@ -60,7 +60,7 @@ void Player::animatePlayer()
 		else if (m_playerAction == WALK)
 		{
 			m_totalFrames = 4;
-			m_frameIncrement = 0.3f;
+			m_frameIncrement = 0.15f;
 			row = 3;
 		}
 	}
@@ -79,7 +79,7 @@ void Player::animatePlayer()
 		if (m_playerAction == WALK)
 		{
 			m_totalFrames = 4;
-			m_frameIncrement = 0.3f;
+			m_frameIncrement = 0.2f;
 			row = 5;
 		}
 	}
@@ -98,7 +98,7 @@ void Player::animatePlayer()
 		if (m_playerAction == WALK)
 		{
 			m_totalFrames = 4;
-			m_frameIncrement = 0.3f;
+			m_frameIncrement = 0.2f;
 			row = 5;
 		}
 	}
@@ -124,19 +124,19 @@ void Player::setAction(int t_action)
 
 void Player::move()
 {
-	if (sf::Keyboard::isKeyPressed(sf::Keyboard::Up))
+	if (sf::Keyboard::isKeyPressed(sf::Keyboard::Up) || (sf::Keyboard::isKeyPressed(sf::Keyboard::W)))
 	{
 		movePlayerUp();
 	}
-	if (sf::Keyboard::isKeyPressed(sf::Keyboard::Down))
+	if (sf::Keyboard::isKeyPressed(sf::Keyboard::Down) || (sf::Keyboard::isKeyPressed(sf::Keyboard::S)))
 	{
 		movePlayerDown();
 	}
-	if (sf::Keyboard::isKeyPressed(sf::Keyboard::Left))
+	if (sf::Keyboard::isKeyPressed(sf::Keyboard::Left) || (sf::Keyboard::isKeyPressed(sf::Keyboard::A)))
 	{
 		movePlayerLeft();
 	}
-	if (sf::Keyboard::isKeyPressed(sf::Keyboard::Right))
+	if (sf::Keyboard::isKeyPressed(sf::Keyboard::Right) || (sf::Keyboard::isKeyPressed(sf::Keyboard::D)))
 	{
 		movePlayerRight();
 	}
